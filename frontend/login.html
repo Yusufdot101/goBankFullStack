@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="login.css" />
+    </head>
+    <body>
+        <header>
+            <li>
+                <a href="index.html" id="aMain">GoBank</a>
+            </li>
+            <ul>
+                <li>
+                    <a href="login.html" id="login">Login</a>
+                </li>
+                <li>
+                    <button id="logout">Logout</button>
+                </li>
+            </ul>
+        </header>
+
+        <main>
+            <form>
+                <input type="text" id="email" placeholder="Email" />
+                <input type="text" id="password" placeholder="Password" />
+                <button id="submitBtn" type="submit">Login</button>
+                <p id="error">Some weird error</p>
+                <p>Don't have an account?</p>
+                <a href="signup.html">Register here</a>
+            </form>
+        </main>
+
+        <script type="module" src="login.js"></script>
+    </body>
+</html>

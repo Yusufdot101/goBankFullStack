@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="loan-requests.css" />
+    </head>
+    <body>
+        <!-- normal nav menu -->
+        <nav>
+            <a href="index.html" id="aMain">GoBank</a>
+            <ul id="normalHeader">
+                <li id="homeTab">
+                    <a href="index.html">Home</a>
+                </li>
+
+                <li id="transactionsTab">
+                    <a href="loan-requests.html">Transactions</a>
+                </li>
+
+                <li id="transfersTab">
+                    <a href="transfers.html"> Transfers</a>
+                </li>
+
+                <li id="loanRequestsTab">
+                    <a href="loan-requests.html">LoanRequests</a>
+                </li>
+
+                <li id="loansTab">
+                    <a href="loans.html">Loans</a>
+                </li>
+
+                <li>
+                    <a href="login.html" id="login">Login</a>
+                </li>
+                <li id="logout">Logout</li>
+            </ul>
+
+            <!--hamburger menu-->
+            <svg
+                width="50px"
+                height="50px"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                id="hamburgerMenu"
+            >
+                <path
+                    d="M4 18L20 18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                />
+                <path
+                    d="M4 12L20 12"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                />
+                <path
+                    d="M4 6L20 6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                />
+            </svg>
+            <div id="sideMenu" class="hidden">
+                <ul id="sideMenuTabs">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="transactions.html">Transactions</a>
+                    </li>
+                    <li>
+                        <a href="transfers.html">Transfers</a>
+                    </li>
+                    <li>
+                        <a href="loan-requests.html">Loan Requests</a>
+                    </li>
+                    <li>
+                        <a href="loans.html">Loans</a>
+                    </li>
+                    <li id="sideMenuLogin">
+                        <a href="login.html">Login</a>
+                    </li>
+                    <li id="sideMenuLogout"><a>Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <section id="loanRequests">
+                <table id="loanRequestsTable"></table>
+            </section>
+        </main>
+        <script type="module" src="loan-requests.js"></script>
+    </body>
+</html>

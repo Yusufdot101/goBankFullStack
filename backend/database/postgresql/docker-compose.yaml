@@ -1,0 +1,12 @@
+services:
+    db:
+        image: postgres:latest
+        container_name: gobank
+        environment:
+            POSTGRES_USER: gobankuser
+            POSTGRES_PASSWORD: gobank_backend
+            POSTGRES_DB: gobank
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+volumes:
+    postgres_data:
