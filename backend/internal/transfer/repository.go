@@ -32,7 +32,7 @@ func (r *Repository) GetAllUserTransfers(userID int64) ([]*Transfer, error) {
 	query := `
 		SELECT id, created_at, from_user_id, to_user_id, amount
 		FROM transfers
-		WHERE from_user_id = $1
+		WHERE from_user_id = $1 OR to_user_id = $1
 	`
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)

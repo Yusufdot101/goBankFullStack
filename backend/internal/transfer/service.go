@@ -27,6 +27,10 @@ func (s *Service) TransferMoney(
 ) (*Transfer, *user.User, error) {
 	toUser, err := s.UserService.GetUserByEmail(toUserEmail)
 	if err != nil {
+		if err == user.ErrNoRecord {
+			v.AddError("recipient email", "email not found")
+			return nil, nil, validator.ErrFailedValidation
+		}
 		return nil, nil, err
 	}
 

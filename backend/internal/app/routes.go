@@ -64,6 +64,10 @@ func (app *Application) Routes() http.Handler {
 
 	// used by the front end
 	router.HandlerFunc(
+		http.MethodPut, "/v1/users/get",
+		app.requireAuthorizedUser(app.GetUserByToken),
+	)
+	router.HandlerFunc(
 		http.MethodPut, "/v1/users/transfers",
 		app.requireAuthorizedUser(app.GetUserTransfersByToken),
 	)
@@ -82,6 +86,8 @@ func (app *Application) Routes() http.Handler {
 		http.MethodPut, "/v1/users/transactions",
 		app.requireAuthorizedUser(app.GetUserTransactionsByToken),
 	)
+
+	router.HandlerFunc(http.MethodPut, "/v1/ping", app.requireAuthorizedUser(app.Healthcheck))
 
 	return app.recoverPanic(app.enableCORS(app.rateLimit(app.authenticate(router))))
 }

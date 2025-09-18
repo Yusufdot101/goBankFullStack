@@ -18,12 +18,6 @@ nav {
     align-items: center;
 }
 
-#tabs {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
 #hamburgerMenu {
     cursor: pointer;
     transition: color 300ms;

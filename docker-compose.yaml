@@ -28,7 +28,7 @@ services:
         networks:
             - gobank-net
         volumes:
-            - ./migrations:/migrations
+            - ./backend/migrations:/migrations
         command:
             [
                 "-path",
@@ -39,15 +39,15 @@ services:
             ]
 
     backend:
-        build: .
-        container_name: gobank-app
+        build: ./backend
+        container_name: gobank-backend
         depends_on:
             db:
                 condition: service_healthy
         networks:
             - gobank-net
         environment:
-            - TRUSTED_ORIGINS=http://localhost:3000
+            - TRUSTED_ORIGINS=http://localhost:3001
             - ENV=DEV
             - DB_DSN=postgres://myuser:mypass@db:5432/bankdb?sslmode=disable
             - PORT=8080
@@ -56,6 +56,17 @@ services:
             - SMTP_PORT=1025
         ports:
             - "8080:8080"
+
+    frontend:
+        build: ./frontend
+        container_name: gobank-frontend
+        depends_on:
+            db:
+                condition: service_healthy
+        networks:
+            - gobank-net
+        ports:
+            - "3001:80"
 
     mailhog:
         image: mailhog/mailhog

@@ -135,7 +135,7 @@ func (r *Repository) UpdateTx(loanRequestID, userID int64, newStatus string) (*L
 
 func (r *Repository) GetAllUserLoanRequests(userID int64) ([]*LoanRequest, error) {
 	query := `
-		SELECT id, created_at, amount, daily_interest_rate
+		SELECT id, created_at, amount, daily_interest_rate, status
 		FROM loan_requests
 		WHERE user_id = $1
 	`
@@ -156,6 +156,7 @@ func (r *Repository) GetAllUserLoanRequests(userID int64) ([]*LoanRequest, error
 			&loanRequest.CreatedAt,
 			&loanRequest.Amount,
 			&loanRequest.DailyInterestRate,
+			&loanRequest.Status,
 		)
 		if err != nil {
 			return nil, err

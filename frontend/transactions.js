@@ -1,29 +1,27 @@
 import {
+    checkToken,
     getUserTransactions,
     handleLogout,
     renderTable,
     setupLoginBtns,
+    sideMenuEventListeners,
 } from "./utils.js";
 
 const transactionsTable = document.getElementById("transactionsTable");
+const errorElem = document.getElementById("error");
 
 setupLoginBtns();
 handleLogout();
-
-const hamburgerMenu = document.getElementById("hamburgerMenu");
-const sideMenu = document.getElementById("sideMenu");
-
-hamburgerMenu.addEventListener("click", () => {
-    console.log("here");
-    sideMenu.classList.toggle("hidden");
-    hamburgerMenu.classList.toggle("activated");
-});
+sideMenuEventListeners();
 
 async function showUsersTransactions() {
     const res = await getUserTransactions();
     const { transactions } = await res.json();
     if (!Array.isArray(transactions)) {
+        checkToken();
+        errorElem.style.display = "block";
         errorElem.innerText = "No Transactions";
+        // check if the token expired
         return;
     }
     renderTable(

@@ -15,10 +15,16 @@ nav {
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+#tabs {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 #hamburgerMenu {
-    display: none;
     cursor: pointer;
     transition: color 300ms;
 }
@@ -87,8 +93,7 @@ nav a:hover {
     color: red;
 }
 
-#logout,
-#sideMenuLogout {
+#logout {
     background-color: black;
     color: white;
     border: none;
@@ -98,8 +103,7 @@ nav a:hover {
     display: none;
 }
 
-#logout:hover,
-#sideMenuLogout:hover {
+#logout:hover {
     color: red;
 }
 
@@ -107,6 +111,15 @@ main {
     height: 100vh;
     padding: 1rem;
     color: white;
+}
+
+#error {
+    display: none;
+    background-color: red;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 1rem;
+    font-weight: bold;
 }
 
 #transactionsTable {
@@ -124,13 +137,4 @@ td {
 th,
 td {
     padding: 1rem;
-}
-
-@media (max-width: 1000px) {
-    #hamburgerMenu {
-        display: inline;
-    }
-    #normalHeader {
-        display: none;
-    }
 }

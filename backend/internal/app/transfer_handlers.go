@@ -39,9 +39,6 @@ func (app *Application) TransferMoney(w http.ResponseWriter, r *http.Request) {
 		case errors.Is(err, validator.ErrFailedValidation):
 			app.FailedValidationResponse(w, v.Errors)
 
-		case errors.Is(err, user.ErrNoRecord):
-			app.TransferFailedResponse(w, http.StatusNotFound, "to email not found")
-
 		default:
 			app.ServerError(w, r, err)
 		}

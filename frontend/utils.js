@@ -1,20 +1,51 @@
 const logout = document.getElementById("logout");
 const login = document.getElementById("login");
-const sideMenuLogout = document.getElementById("sideMenuLogout");
-const sideMenuLogin = document.getElementById("sideMenuLogin");
 
 export async function setupLoginBtns() {
     const sessionStatus = localStorage.getItem("status");
     if (sessionStatus == "loggedIn") {
         login.style.display = "none";
-        sideMenuLogin.style.display = "none";
         logout.style.display = "block";
-        sideMenuLogout.style.display = "block";
     } else {
         logout.style.display = "none";
-        sideMenuLogout.style.display = "none";
         login.style.display = "block";
-        sideMenuLogin.style.display = "block";
+    }
+}
+
+const hamburgerMenu = document.getElementById("hamburgerMenu");
+const sideMenu = document.getElementById("sideMenu");
+
+export function sideMenuEventListeners() {
+    hamburgerMenu.addEventListener("click", (e) => {
+        e.stopPropagation();
+        sideMenu.classList.toggle("hidden");
+        hamburgerMenu.classList.toggle("activated");
+    });
+
+    window.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const target = e.target;
+        if (![sideMenu.id, hamburgerMenu.id].includes(target.id)) {
+            sideMenu.classList.add("hidden");
+            hamburgerMenu.classList.remove("activated");
+        }
+    });
+}
+
+export async function checkToken() {
+    const token = localStorage.getItem("token");
+    const res = await fetch(`${API_URL}/ping`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    if (!res.ok) {
+        localStorage.removeItem("token");
+        localStorage.setItem("status", "notLoggedIn");
+        alert("Please login to access this resource.");
+        window.location.href = "login.html";
     }
 }
 

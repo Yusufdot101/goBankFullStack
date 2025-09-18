@@ -1,8 +1,13 @@
-import { handleLogin, handleLogout, setupLoginBtns } from "./utils.js";
+import {
+    handleLogin,
+    handleLogout,
+    setupLoginBtns,
+    sideMenuEventListeners,
+} from "./utils.js";
 
-const logout = document.getElementById("logout");
 setupLoginBtns();
 handleLogout();
+sideMenuEventListeners();
 
 const email = document.getElementById("email");
 const password = document.getElementById("password");

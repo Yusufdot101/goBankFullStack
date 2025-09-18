@@ -1,28 +1,26 @@
 import {
+    checkToken,
     getUserLoans,
     handleLogout,
     renderTable,
     setupLoginBtns,
+    sideMenuEventListeners,
 } from "./utils.js";
 
 const loansTable = document.getElementById("loansTable");
+const errorElem = document.getElementById("error");
 
 setupLoginBtns();
 handleLogout();
-
-const hamburgerMenu = document.getElementById("hamburgerMenu");
-const sideMenu = document.getElementById("sideMenu");
-
-hamburgerMenu.addEventListener("click", () => {
-    sideMenu.classList.toggle("hidden");
-    hamburgerMenu.classList.toggle("activated");
-});
+sideMenuEventListeners();
 
 async function showUsersLoans() {
     const res = await getUserLoans();
     const { loans } = await res.json();
     if (!Array.isArray(loans)) {
-        errorElem.innerText = "No Transactions";
+        checkToken();
+        errorElem.style.display = "block";
+        errorElem.innerText = "No Loans";
         return;
     }
     renderTable(
@@ -34,8 +32,8 @@ async function showUsersLoans() {
                 header: "Date",
                 render: (t) => new Date(t.CreatedAt).toDateString(),
             },
-            { key: "ToUserID", header: "To User ID" },
             { key: "Amount", header: "Amount" },
+            { key: "DailyInterestRate", header: "Daily Interest %" },
         ],
         loans,
     );

@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="transactions.css" />
+        <link rel="stylesheet" href="profile.css" />
     </head>
     <body>
         <nav>
@@ -52,25 +52,50 @@
                         <li>
                             <a href="loan-requests.html">Loan Requests</a>
                         </li>
-                        <li id="loansTab">
+                        <li>
                             <a href="loans.html">Loans</a>
                         </li>
                         <li id="login">
                             <a href="login.html"> Login </a>
                         </li>
-
-                        <li id="logout"><a>Logout</a></li>
+                        <li id="logout">
+                            <a>Logout</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
         <main>
-            <section id="transactions">
-                <table id="transactionsTable"></table>
-                <p id="error"></p>
-            </section>
+            <table id="details">
+                <tr>
+                    <th>Account ID</th>
+                    <td id="accountID"></td>
+                </tr>
+                <tr>
+                    <th>Account created at</th>
+                    <td id="accountCreatedAt"></td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td id="name"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td id="email"></td>
+                </tr>
+                <tr>
+                    <th>Account balance</th>
+                    <td id="accountBalance"></td>
+                </tr>
+                <tr>
+                    <th>Account activated</th>
+                    <td id="accountActivated"></td>
+                </tr>
+            </table>
+            <p id="error"></p>
         </main>
-        <script type="module" src="transactions.js"></script>
+
+        <script type="module" src="profile.js"></script>
     </body>
 </html>

@@ -1,27 +1,25 @@
 import {
+    checkToken,
     getUserTransfers,
     handleLogout,
     renderTable,
     setupLoginBtns,
+    sideMenuEventListeners,
 } from "./utils.js";
 
 const transfersTable = document.getElementById("transfersTable");
+const errorElem = document.getElementById("error");
 
+sideMenuEventListeners();
 setupLoginBtns();
 handleLogout();
-
-const hamburgerMenu = document.getElementById("hamburgerMenu");
-const sideMenu = document.getElementById("sideMenu");
-
-hamburgerMenu.addEventListener("click", () => {
-    sideMenu.classList.toggle("hidden");
-    hamburgerMenu.classList.toggle("activated");
-});
 
 async function showUsersTransactions() {
     const res = await getUserTransfers();
     const { transfers } = await res.json();
     if (!Array.isArray(transfers)) {
+        checkToken();
+        errorElem.style.display = "block";
         errorElem.innerText = "No Transactions";
         return;
     }
@@ -34,6 +32,7 @@ async function showUsersTransactions() {
                 header: "Date",
                 render: (t) => new Date(t.CreatedAt).toDateString(),
             },
+            { key: "FromUserID", header: "From User ID" },
             { key: "ToUserID", header: "To User ID" },
             { key: "Amount", header: "Amount" },
         ],

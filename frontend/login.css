@@ -10,18 +10,89 @@ body {
     background-color: gray;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
+nav {
     background-color: black;
-    padding: 1rem 2rem;
-}
-
-header ul {
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+#tabs {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+#hamburgerMenu {
+    cursor: pointer;
+    transition: color 300ms;
+}
+#hamburgerMenu:hover {
+    color: red;
+}
+.hidden {
+    display: none;
+}
+.activated {
+    color: red;
+}
+#sideMenu {
+    z-index: 10;
+    background-color: red;
+    position: absolute;
+    inset: 0;
+    padding: 1rem;
+    transform: translate(calc(100vw - 100%), 5.1rem);
+    width: 75vw;
+    height: 100vh;
+}
+#sideMenuTabs {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    align-items: start;
+    gap: 0.25rem;
+}
+#sideMenuTabs li {
+    width: 100%;
+    border: 1px solid black;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+    border-radius: 1rem;
+}
+
+#sideMenuTabs li a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+}
+
+svg {
+    color: white;
+}
+
+#aMain {
+    flex-basis: 30vw;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
     gap: 1rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: red;
 }
 
 #logout {
@@ -35,20 +106,6 @@ header ul {
 }
 
 #logout:hover {
-    color: red;
-}
-
-header ul li {
-    list-style: none;
-    font-size: inherit;
-}
-
-header a {
-    color: white;
-    text-decoration: none;
-}
-
-header a:hover {
     color: red;
 }
 

@@ -1,20 +1,16 @@
-import { handleLogout, setupLoginBtns } from "./utils.js";
+import {
+    handleLogout,
+    setupLoginBtns,
+    sideMenuEventListeners,
+} from "./utils.js";
 
 setupLoginBtns();
 handleLogout();
+sideMenuEventListeners();
 
-const hamburgerMenu = document.getElementById("hamburgerMenu");
-const sideMenu = document.getElementById("sideMenu");
-
-hamburgerMenu.addEventListener("click", () => {
-    console.log("here");
-    sideMenu.classList.toggle("hidden");
-    hamburgerMenu.classList.toggle("activated");
-});
-const home = document.getElementById("home");
-
+const content = document.getElementById("content");
 function showHome() {
-    home.innerText = "Welcome To YM Bank";
+    content.innerText = "Welcome To YM Bank";
 }
 
 showHome();

@@ -20,3 +20,10 @@ func (app *Application) Healthcheck(w http.ResponseWriter, r *http.Request) {
 		app.ServerError(w, r, err)
 	}
 }
+
+func (app *Application) Ping(w http.ResponseWriter, r *http.Request) {
+	err := jsonutil.WriteJSON(w, http.StatusOK, jsonutil.Envelope{})
+	if err != nil {
+		app.ServerError(w, r, err)
+	}
+}

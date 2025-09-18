@@ -15,10 +15,16 @@ nav {
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+#tabs {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 #hamburgerMenu {
-    display: none;
     cursor: pointer;
     transition: color 300ms;
 }
@@ -67,28 +73,27 @@ svg {
     color: white;
 }
 
-nav ul {
+#sideMenuTabs {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
 }
 
-nav ul li {
+#sideMenuTabs li {
     list-style: none;
 }
 
-nav a {
+a {
     color: white;
     text-decoration: none;
 }
 
-nav a:hover {
+a:hover {
     color: red;
 }
 
-#logout,
-#sideMenuLogout {
+#logout {
     background-color: black;
     color: white;
     border: none;
@@ -98,38 +103,13 @@ nav a:hover {
     display: none;
 }
 
-#logout:hover,
-#sideMenuLogout:hover {
+#logout:hover {
     color: red;
 }
 
 main {
     height: 100vh;
     margin-top: 1rem;
-}
-
-#tabs {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    padding: 1rem;
-}
-
-#tabs li {
-    cursor: pointer;
-    position: relative;
-}
-
-#tabs li::after {
-    content: "";
-    position: absolute;
-    inset: 2rem 0;
-    transition: 300ms;
-}
-#tabs li:hover::after {
-    background-color: red;
-    width: full;
-    height: 0.1rem;
 }
 
 .activated {
@@ -156,14 +136,5 @@ main {
 @media (max-width: 650px) {
     body {
         font-size: 1rem;
-    }
-}
-
-@media (max-width: 1000px) {
-    #hamburgerMenu {
-        display: inline;
-    }
-    #normalHeader {
-        display: none;
     }
 }

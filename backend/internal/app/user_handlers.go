@@ -16,6 +16,45 @@ import (
 	"github.com/Yusufdot101/goBankBackend/internal/validator"
 )
 
+func (app *Application) GetUserByToken(w http.ResponseWriter, r *http.Request) {
+	var input struct {
+		TokenPlaintext string `json:"token"`
+	}
+	if err := jsonutil.ReadJSON(w, r, &input); err != nil {
+		app.BadRequestResponse(w, err)
+		return
+	}
+
+	v := validator.New()
+	if token.ValidateToken(v, input.TokenPlaintext); !v.IsValid() {
+		app.FailedValidationResponse(w, v.Errors)
+		return
+	}
+
+	tokenService := token.Service{Repo: &token.Repository{DB: app.DB}}
+	userService := user.Service{
+		Repo:         &user.Repository{DB: app.DB},
+		TokenService: &tokenService,
+	}
+
+	u, err := userService.GetUserForToken(input.TokenPlaintext, token.ScopeAuthorization)
+	if err != nil {
+		switch {
+		case errors.Is(err, user.ErrNoRecord):
+			app.NotFoundResponse(w, r)
+		default:
+			app.ServerError(w, r, err)
+		}
+		return
+	}
+
+	if err := jsonutil.WriteJSON(
+		w, http.StatusAccepted, jsonutil.Envelope{"user": u},
+	); err != nil {
+		app.ServerError(w, r, err)
+	}
+}
+
 type userDataFetcher func(userID int64) (any, error)
 
 func (app *Application) fetchUserData(
