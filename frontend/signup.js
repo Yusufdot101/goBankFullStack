@@ -16,7 +16,7 @@ const fullName = document.getElementById("name");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 
-const API_URL = "http://localhost:4000/v1";
+const API_URL = "http://localhost:8080/v1";
 
 submitBtn.addEventListener("click", async (e) => {
     // for some reason it wont work if i remove this, i get:
